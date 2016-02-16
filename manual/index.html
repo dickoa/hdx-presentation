@@ -4,411 +4,179 @@
 <head>
     <meta charset="utf-8">
     <title>The Humanitarian Data Exchange</title>
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
+    <meta name="description" content="An interactive presentation about the Humanitarian Data Exchange project.">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <!--
+
+    STYLE:
+    =====
+
+    Style sheets include original reveal style sheets,
+    as well as supporting styles (e.g. c3.min.css) and
+    code highlighting (i.e. zenburn.css).
+
+    -->
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/white.css" id="theme">
     <link rel="stylesheet" type="text/css" href="css/c3.min.css">
     <link rel="stylesheet" type="text/css" href="css/cartagena.css">
     <link rel="stylesheet" type="text/css" href="css/autoplay.css">
-    <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
-    <!-- Printing and PDF exports -->
+
+    <!--
+
+    PDF PRINT:
+    =========
+
+    Printing PDFs made easy.
+
+    -->
     <script>
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-    document.getElementsByTagName('head')[0].appendChild(link);
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
     </script>
-    <!-- Reveal libraries -->
+
+    <!--
+
+    JAVASCRIPT DEPENDENCIES:
+    =======================
+
+    JavaScript dependencies; includes dependencies
+    from revea.js, jquery and a logic to fetch
+    statistics from HDX's Funnel Space.
+
+    -->
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.js"></script>
-    <!-- Visualization libraries -->
-    <!-- Visualization scripts -->
     <script src="js/jquery.js"></script>
     <script src="js/autoplay.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/lodash.js"></script>
+    <script src="js/hdx_statistics.js"></script>
     <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
-        <![endif]-->
+    <![endif]-->
 </head>
 
 <body>
     <div class="reveal">
-        <!-- Any section element inside of this container is displayed as a slide -->
+        <!--
+
+        SLIDES:
+        ======
+
+        Any HTML section tag  be considered a slide.
+        Both regular HTML and JavaScript logic
+        can be added to those.
+
+        -->
         <div class="slides">
+
             <section data-background="#2c3e50">
                 <div style="text-align: center;">
                     <img src="img/hdx_logo.png">
                 </div>
-                <script>
-                // autoplay.init();
-                </script>
             </section>
             <section data-background="#2c3e50">
                 <h2>What is HDX?</h2>
                 <p>
                     The Humanitarian Data Exchange (HDX) is OCHA’s open platform for sharing humanitarian data. HDX’s objective is to make humanitarian data <strong>easy to find</strong> and <strong>easy to use for analysis</strong>.
                 </p>
-                <!-- <div style="border: none;"><img src="img/hdx_logo.png"></div> -->
             </section>
-            <section data-state="start01" data-background-iframe="http://data.hdx.rwlabs.org/">
-                <script>
-                Reveal.addEventListener('start01', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Search hundreds of humanitarian datasets->3000",
-                        "wait->2000",
-                        "move->1000,340->3000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background-iframe="http://data.hdx.rwlabs.org/">
             </section>
-            <section data-state="start02" data-background-iframe="http://data.hdx.rwlabs.org/search?q=sanitation">
-                <script>
-                Reveal.addEventListener('start02', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Explore select indicators and datasets from dozens of sources.->4000",
-                        "wait->2000",
-                        "move->300,300->2000",
-                        "wait->3000",
-                        "move->300,800->2000",
-                        "wait->3000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background-iframe="http://data.hdx.rwlabs.org/search?q=sanitation">
             </section>
-            <section data-state="start03" data-background-iframe="https://data.hdx.rwlabs.org/dataset?res_format=CSV&sort=metadata_modified+desc">
-                <script>
-                Reveal.addEventListener('start03', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Filter by organizations, tags, locations, and more.->4000",
-                        "wait->2000",
-                        "move->500,200->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background="#2c3e50">
+                <h2>HDX Statistics</h2>
+                <p class="fragment" data-fragment-index="1">Number of Registered Users: <strong><span id="registered_users"></span></strong></p>
+                <p class="fragment" data-fragment-index="2">Number of Registered Organizations: <strong><span id="registered_organizations"></span></strong></p>
+                <p class="fragment" data-fragment-index="3">Total Number of Datasets: <strong><span id="number_datasets"></span></strong></p>
             </section>
-            <section data-state="start04" data-background-iframe="http://data.hdx.rwlabs.org/browse">
-                <script>
-                Reveal.addEventListener('start04', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Browse our collection by country, topic, and more.->4000",
-                        "wait->2000",
-                        "goclick->body > div.reveal.slide.center > div.backgrounds > div:nth-child(8) > iframe->2000",
-                        "goclick->300,1000->2000",
-                        "wait->3000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <!-- <section data-background-iframe="http://data.hdx.rwlabs.org/organization/somalia-ngo-consortium"></section> -->
-            <section data-state="start06" data-background-iframe="http://data.hdx.rwlabs.org/group/hti">
-                <script>
-                Reveal.addEventListener('start06', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Country pages visualize relevant indicators.->4000",
-                        "wait->2000",
-                        "move->1000,300->2000",
-                        "click->1000,300",
-                        "wait->2000",
-                        "move->300,1000->2000",
-                        "click->300,1000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start07" data-background-iframe="http://data.hdx.rwlabs.org/group/mli">
-                <script>
-                Reveal.addEventListener('start07', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Some country pages are custom-designed.->4000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->1000,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start08" data-background-iframe="https://test-data.hdx.rwlabs.org/organization/wfp">
-                <script>
-                Reveal.addEventListener('start08', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Organization pages have custom look and feel.->4000",
-                        "wait->2000",
-                        "move->1000,300->2000",
-                        "wait->2000",
-                        "move->1000,600->2000",
-                        "wait->2000",
-                        "move->1000,1000->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start09">
-                <script>
-                Reveal.addEventListener('start09', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Embedable visualization.->2000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section>
                 <h2>Embed Capabilities</h2>
                 <p>Visualizations can be embedend and remain fully interactive.</p>
-                <iframe src="http://test-data.hdx.rwlabs.org/widget/WFP?embedded=true&adm0=181&prod=Beans&unit=KG&size=medium" width=900 height=600></iframe>
+                <!-- <iframe src="http://test-data.hdx.rwlabs.org/widget/WFP?embedded=true&adm0=181&prod=Beans&unit=KG&size=medium" width=900 height=600></iframe> -->
             </section>
-            <section data-state="start10" data-background-iframe="https://data.hdx.rwlabs.org/dataset/syria-border-crossings">
-                <script>
-                Reveal.addEventListener('start10', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Quickly visualize geographic data with geo-preview.->2000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background-iframe="https://data.hdx.rwlabs.org/dataset/syria-border-crossings">
             </section>
-            <section data-state="start11" data-background-iframe="http://data.hdx.rwlabs.org/group/nepal-earthquake">
-                <script>
-                Reveal.addEventListener('start11', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Crisis pages display accurate and timely data.->2000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start12" data-background-iframe="http://data.hdx.rwlabs.org/ebola">
-                <script>
-                Reveal.addEventListener('start11', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Ebola crisis page.->2000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start13" data-background-iframe="http://data.hdx.rwlabs.org/dataset/ebola-cases-2014">
-                <script>
-                Reveal.addEventListener('start13', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Datasets with full metadata.->2000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-<!--             <section data-state="start14">
-                <script>
-                Reveal.addEventListener('start14', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->HDX collects data manually and automatically from many sources.->5000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-                <div style="text-align: center;">
-                    <img src="img/hdx-system-diagram.png">
-                </div>
-            </section> -->
-            <section data-state="start15" data-background-iframe="http://data.hdx.rwlabs.org/dataset/new">
-                <script>
-                Reveal.addEventListener('start15', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Easy to share data manually.->4000",
-                        "wait->2000",
-                        "move->300,1000->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
-            </section>
-            <section data-state="start16">
-                <script>
-                Reveal.addEventListener('start16', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->Or automatically via our open API.->3000",
-                        "wait->2000",
-                        "move->300,600->2000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section>
                 <img src="img/open_api_diagram.png">
             </section>
-            <section data-state="start17">
-                <script>
-                Reveal.addEventListener('start17', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->An open API allows anyone to use data on HDX.->4000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section>
                 <div style="text-align: center;">
                     <img src="img/google.png">
                 </div>
             </section>
+
             <section>
                 <div style="text-align: center;">
                     <img src="img/nytimes.png">
                 </div>
             </section>
+
             <section>
                 <div style="text-align: center;">
                     <img src="img/guardian.png">
                 </div>
             </section>
-            <!-- <section data-background-iframe="http://luiscape.github.io/ebola-fts-dashboard/"></section> -->
-            <section data-state="start18">
-                <script>
-                Reveal.addEventListener('start18', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->HDX has a quality standard process with 5 elements.->4000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section>
                 <div style="text-align: center;">
                     <h2>Quality Assurance</h2>
                     <img src="img/quality_radial_chart.png">
                 </div>
             </section>
-            <section data-state="start19" data-background-iframe="http://luiscape.github.io/eastafrica-data-heatmap/">
-                <script>
-                Reveal.addEventListener('start19', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->HDX also makes data-availability assessments.->4000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background-iframe="http://luiscape.github.io/eastafrica-data-heatmap/">
             </section>
-            <section data-state="start20" data-background-iframe="http://www.funnel.space">
-                <script>
-                Reveal.addEventListener('start20', function() {
-                    var script = [
-                        "move->100,100",
-                        "move->100,120",
-                        "display->HDX is an increasingly popular service.->4000",
-                        "wait->2000",
-                        "move->2000,300->2000"
-                    ];
-                    autoplay.loadScript(script);
-                }, false);
-                </script>
+
+            <section data-background-iframe="http://www.funnel.space">
             </section>
+
             <section data-background="#2c3e50">
                 <h2>How can you support HDX?</h2>
             </section>
+
             <section data-background="#2c3e50">
                 <p class="fragment" data-fragment-index="1"><strong>Share Data: </strong><a href="https://data.hdx.rwlabs.org">https://data.hdx.rwlabs.org</a></p>
                 <p class="fragment" data-fragment-index="2"><strong>Volunteer: </strong><a href="mailto:hdx@un.org">hdx@un.org</a></p>
                 <p class="fragment" data-fragment-index="3"><strong>Join the Conversation: </strong><a href="http://twitter.com/humdata">@humdata</a></p>
             </section>
+
             <section data-background="#2c3e50">
                 <div style="text-align: center;">
                     <h2>Thank you</h2>
                     <h4><a href="http://twitter.com/humdata">@humdata</a></h4>
                 </div>
             </section>
+
         </div>
     </div>
+
+
+    <!--
+
+    REVEAL CONFIGURATION:
+    ====================
+
+    Here it is possible to configure the slides.
+
+    -->
     <script>
-    // Full list of configuration options available at:
-    // http://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
         controls: true,
         progress: true,
@@ -456,6 +224,7 @@
         }]
     });
     </script>
+
     <script>
     (function() {
         var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
@@ -464,6 +233,14 @@
         }
     })();
     </script>
+
+    <script>
+        HDXStatistics.metrics()
+        HDXStatistics.latest('ckan-number-of-users', 'registered_users')
+        HDXStatistics.latest('ckan-number-of-orgs', 'registered_organizations')
+        HDXStatistics.latest('ckan-number-of-datasets', 'number_datasets')
+    </script>
+
 </body>
 
 </html>
