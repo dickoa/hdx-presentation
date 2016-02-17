@@ -26,13 +26,13 @@ var HDXStatistics = {
       console.log(data)
     })
   },
-  latest: function (metricid, container_id) {
+  latest: function (metricid, container_id, round_value) {
     d3.json(this.base + 'funnels?metricid=' + metricid, function (error, data) {
       if (error) {
         return error
       }
       var output = _.maxBy(data.resources, 'period_end_date')
-      document.getElementById(container_id).innerHTML = _.round(output.value, -2)
+      document.getElementById(container_id).innerHTML = _.round(output.value, round_value)
     })
   }
 }
