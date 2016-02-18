@@ -26,13 +26,41 @@ var HDXStatistics = {
       console.log(data)
     })
   },
+  mean: function (metricid, container_id, round_value) {
+    d3.json(this.base + 'funnels?metricid=' + metricid + '&period_type=d', function (error, data) {
+      if (error) {
+        return error
+      }
+      var output = _.sumBy(data.resources, 'value') / data.resources.length
+      document.getElementById(container_id).innerHTML = numeral(_.round(output.value, round_value)).format('0,0')
+    })
+  },
+  share: function (metricid, container_id, round_value) {
+    d3.json(this.base + 'funnels?metricid=' + metricid, function (error, data) {
+      if (error) {
+        return error
+      }
+      var output = _.maxBy(data.resources, 'period_end_date')
+      document.getElementById(container_id).innerHTML = numeral(_.round(output.value, round_value)).format('0%')
+    })
+  },
   latest: function (metricid, container_id, round_value) {
     d3.json(this.base + 'funnels?metricid=' + metricid, function (error, data) {
       if (error) {
         return error
       }
       var output = _.maxBy(data.resources, 'period_end_date')
-      document.getElementById(container_id).innerHTML = _.round(output.value, round_value)
+      document.getElementById(container_id).innerHTML = numeral(_.round(output.value, round_value)).format('0,0')
+    })
+  },
+  cumulative: function (metricid, container_id, round_value) {
+    d3.json(this.base + 'funnels?metricid=' + metricid + '&period_type=w', function (error, data) {
+      if (error) {
+        return error
+      }
+      var output = _.sumBy(data.resources, 'value')
+      console.log(output)
+      document.getElementById(container_id).innerHTML = _.round(output, round_value)
     })
   }
 }
