@@ -102,100 +102,31 @@
                 <p class="fragment" data-fragment-index="4">4. Response data (3W, etc.)</p>
             </section>
 
-            <section data-background="#2c3e50">
-                <h2>Our short history</h2>
-                <p class="fragment" data-fragment-index="1">HDX was launched at the Open Knowledge Festival in Berlin.</p>
-                <p class="fragment" data-fragment-index="2">Over <span id="cumulative_users"><strong>145,000</strong></span> users visiting HDX since July 2014</p>
-                <p class="fragment" data-fragment-index="3">About <strong><span id="registered_users"></span></strong> registered users</p>
-                <p class="fragment" data-fragment-index="4">Approximately <strong><span id="number_of_users"></span></strong> users  per week visiting the site</p>
-                <p class="fragment" data-fragment-index="5">Almost <strong>one every four</strong> (<span id="daily_downloads"></span>) visitors downloads a dataset</p>
-                <p class="fragment" data-fragment-index="6"><strong><span id="registered_organizations"></span></strong> organizations</p>
-            </section>
-
             <section data-background-iframe="http://data.hdx.rwlabs.org/">
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>Search</h2>
             </section>
 
             <section data-background-iframe="http://data.hdx.rwlabs.org/search?q=ebola">
             </section>
 
             <section data-background="#2c3e50">
-                <h2>Example Dataset</h2>
+                <h2>Example Datasets</h2>
             </section>
 
-            <section data-background-iframe="https://data.hdx.rwlabs.org/dataset/ebola-cases-2014">
+            <section data-background-iframe="https://data.hdx.rwlabs.org/dataset/wfp-food-prices">
             </section>
 
-            <section data-background="#2c3e50">
-                <h2>Geopreview</h2>
+            <section data-background-iframe="https://data.hdx.rwlabs.org/dataset/geodata-of-neighborhood-damage-percentages-aleppo-syria-february-18-2016">
             </section>
 
-            <section data-background-iframe="https://data.hdx.rwlabs.org/dataset/nigeria-water-courses">
+            <section>
+                <p>
+                A community of people +<br/>
+                deeply believes +<br/>
+                better and more accessible humanitarian data =<br/>
+                <strong>saves lives</strong>.
+                </p>
             </section>
 
-            <section data-background="#2c3e50">
-                <h2>What is metadata? Data about your data.</h2>
-                <iframe src="http://docs.hdx.rwlabs.org/providing-metadata-for-your-datasets-on-hdx/" width=900 height=600></iframe>
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>Why is metadata important?</h2>
-                <ul>
-                    <li class="fragment" data-fragment-index="1"><strong>Searchability:</strong> Good tags and descriptions make your data more discoverable</li>
-                    <li class="fragment" data-fragment-index="2"><strong>Trust:</strong> Our users have told us over and over how important it is to know how much they can trust the data.</li>
-                    <li class="fragment" data-fragment-index="3"><strong>Fitness for use:</strong> The methods used to collect or process data may influence the suitability of the information for different purposes. Methodology!</li>
-                    <li class="fragment" data-fragment-index="4"><strong>Usability:</strong> Without good documentation of license, methods and field names, users may be unable to make use of the data you’ve shared.</li>
-                </ul>
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>Organization Pages</h2>
-            </section>
-
-            <section data-background-iframe="http://data.hdx.rwlabs.org/organization/ocha-afghanistan">
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>Crises Pages</h2>
-            </section>
-
-            <section data-background-iframe="https://data.hdx.rwlabs.org/group/nepal-earthquake">
-            </section>
-
-            <section data-background-iframe="https://data.hdx.rwlabs.org/crisis/elnino">
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>Open API</h2>
-                <img src="img/api_in_action.gif">
-            </section>
-
-            <section data-background="#2c3e50">
-                <h2>World Food Programme</h2>
-            </section>
-
-            <section data-background-iframe="http://data.hdx.rwlabs.org/organization/wfp">
-            </section>
-
-            <section data-background-iframe="http://vam.wfp.org/sites/mvam_monitoring/"></section>
-
-          <!--   <section data-background="#2c3e50">
-                <p class="fragment" data-fragment-index="1"><strong>Share Data: </strong><a href="https://data.hdx.rwlabs.org">https://data.hdx.rwlabs.org</a></p>
-                <p class="fragment" data-fragment-index="2"><strong>Volunteer: </strong><a href="mailto:hdx@un.org">hdx@un.org</a></p>
-                <p class="fragment" data-fragment-index="3"><strong>Join the Conversation: </strong><a href="http://twitter.com/humdata">@humdata</a></p>
-            </section>
-
-            <section data-background="#2c3e50">
-                <div style="text-align: center;">
-                    <h2>Thank you</h2>
-                    <h4><a href="http://twitter.com/humdata">@humdata</a></h4>
-                    <h4><a href="http://data.hdx.rwlabs.org">hdx.rwlabs.org</a></h4>
-                </div>
-            </section>
- -->
         </div>
     </div>
 
@@ -277,15 +208,10 @@
     -->
     <script>
         HDXStatistics.metrics()
-        // HDXStatistics.cumulative('ga-users', 'cumulative_users', -2) // issue with total numbers.
         HDXStatistics.latest('ckan-number-of-users', 'registered_users', -2)
         HDXStatistics.latest('ga-users', 'number_of_users', -2)
         HDXStatistics.share('calc-conversion-download', 'daily_downloads', 2)
         HDXStatistics.latest('ckan-number-of-orgs', 'registered_organizations', -1)
-
-        // HDXStatistics.latest('ckan-number-of-datasets', 'number_datasets', -2)
-        // HDXStatistics.latest('calc-conversion-download', 'download_rate', 1)
-        // HDXStatistics.latest('calc-ckan-new-users', 'new_registered_users', -1)
     </script>
 
 </body>
