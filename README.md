@@ -5,7 +5,7 @@ Presentation about the [Humanitarian Data Exchange](https://data.hdx.rwlabs.org)
 
 The presentation can be accessed in the following URL:
 
-* http://luiscape.github.io/hdx-presentation/
+<!-- * http://luiscape.github.io/hdx-presentation/ -->
 
 ## Usage
 If not loaded directly from [GitHub Pages](https://pages.github.com/), the presentation will need to be run from an HTTP server locally. After cloning this repository, navigate to its folder, and run:
@@ -16,3 +16,11 @@ $ http-server
 ```
 
 That should start a server on `http://localhost:8080`.
+
+You can also use Python
+
+```
+$ python -m http.server
+```
+
+That should start a server on `http://localhost:8000`.
